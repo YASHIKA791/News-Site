@@ -1,8 +1,9 @@
+
 function loadTheNews() {
     const xhr = new XMLHttpRequest(); 
     let date = "";
     // open the object
-    const url = 'https://gnews.io/api/v4/search?q=india&token=658b157cdebda978507d1fddf5f6d078&lang=en';
+    const url = config.NEWS_API;
     xhr.open('GET', url, true);
 
     // What to do on progress (optional)
@@ -74,7 +75,7 @@ xhr.addEventListener("readystatechange", function () {
 
 xhr.open("GET", "https://events-happened-in-world.p.rapidapi.com/today?limit=5");
 xhr.setRequestHeader("X-RapidAPI-Host", "events-happened-in-world.p.rapidapi.com");
-xhr.setRequestHeader("X-RapidAPI-Key", "85d6214687msh75dc5f4e5b8cc39p116bd4jsn42222cb736d8");
+xhr.setRequestHeader("X-RapidAPI-Key", config.EVENT_API);
 
 xhr.send(data);
 
@@ -91,8 +92,8 @@ function searchBtnExecute() {
     alert("Please enter a valid value");
     else {
         const xhr = new XMLHttpRequest; 
-        const url = 'https://gnews.io/api/v4/search?q=' + queryValue + '&token=658b157cdebda978507d1fddf5f6d078&lang=en';
-        // const url = 'https://gnews.io/api/v4/search?q=cricket&token=658b157cdebda978507d1fddf5f6d078&lang=en';
+        const url = 'https://gnews.io/api/v4/search?q=' + queryValue + '&token='+config.NEWS_TOKEN+'&lang=en';
+       
         xhr.open('GET', url, true); 
         xhr.onprogress = function() {
             // console.log('Loading');
@@ -136,7 +137,7 @@ function showTemperature(position) {
     const lan = position.coords.longitude;
     const lat = position.coords.latitude; 
     // console.log(lan + ',' + lat);
-    const apikey = 'e187219afeb3287cbed4dfe74f29168e';
+    const apikey = config.TEMP_API;
     const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lan + '&appid=' + apikey + '&units=metric';
     const xhr = new XMLHttpRequest;
     xhr.open('GET', url, true);
